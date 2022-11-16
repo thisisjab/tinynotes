@@ -1,8 +1,40 @@
 from utils import datetime_tools
 
 
+class Tag:
+    def __init__(self, id_: int, name: str) -> None:
+        self.id_ = id_
+        self.name = name
+
+    @property
+    def id_(self):
+        return self._id
+
+    @id_.setter
+    def id_(self, value: int):
+        if not isinstance(value, int):
+            raise ValueError("`id_` must be an integer.")
+
+        self._id = value
+
+    @property
+    def name(self):
+        return self._name
+
+    @name.setter
+    def name(self, value):
+        if not isinstance(value, str):
+            raise ValueError("`title` must be a string.")
+
+        if len(value.strip()) == 0:
+            raise ValueError("`title` cannot be a empty.")
+
+        self._title = value.strip()
+
+
 class Note:
     def __init__(self, id_: int, title: str, last_edit: str, content: str = None) -> None:
+        # TODO: add `tag_id` property
         self.id_ = id_
         self.title = title
         self.last_edit = last_edit
